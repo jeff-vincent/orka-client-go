@@ -12,8 +12,9 @@ func (c *Client) SignIn() (*AuthResponse, error) {
 	if c.Auth.Email == "" || c.Auth.Password == "" {
 		return nil, fmt.Errorf("define email and password")
 	}
+
 	rb, err := json.Marshal(c.Auth)
-	fmt.Println(string(rb))
+
 	if err != nil {
 		return nil, err
 	}

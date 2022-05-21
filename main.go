@@ -17,7 +17,10 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println(client)
+	fmt.Println("-------- CREATING VM ---------")
 	client.CreateVM()
+	fmt.Println("-------- DEPLOYING VM ---------")
+	client.DeployVM()
+	fmt.Println("-------- GETTING VMs ---------")
 	client.GetVMs()
 }

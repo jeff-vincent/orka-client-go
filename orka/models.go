@@ -66,3 +66,30 @@ type VMCreated struct {
 	} `json:"help"`
 	Errors []interface{} `json:"errors"`
 }
+
+type VMDeployed struct {
+	Message string `json:"message"`
+	Help    struct {
+		StartVirtualMachine            string `json:"start_virtual_machine"`
+		StopVirtualMachine             string `json:"stop_virtual_machine"`
+		ResumeVirtualMachine           string `json:"resume_virtual_machine"`
+		SuspendVirtualMachine          string `json:"suspend_virtual_machine"`
+		DataForVirtualMachineExecTasks struct {
+			OrkaVMName string `json:"orka_vm_name"`
+		} `json:"data_for_virtual_machine_exec_tasks"`
+		VirtualMachineVnc string `json:"virtual_machine_vnc"`
+	} `json:"help"`
+	Errors          []interface{} `json:"errors"`
+	RAM             string        `json:"ram"`
+	Vcpu            string        `json:"vcpu"`
+	HostCPU         string        `json:"host_cpu"`
+	IP              string        `json:"ip"`
+	SSHPort         string        `json:"ssh_port"`
+	ScreenSharePort string        `json:"screen_share_port"`
+	VMID            string        `json:"vm_id"`
+	PortWarnings    []interface{} `json:"port_warnings"`
+	IoBoost         bool          `json:"io_boost"`
+	UseSavedState   bool          `json:"use_saved_state"`
+	GpuPassthrough  bool          `json:"gpu_passthrough"`
+	VncPort         string        `json:"vnc_port"`
+}
