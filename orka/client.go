@@ -66,7 +66,7 @@ func NewClient(host, email, password *string) (*Client, error) {
 }
 
 func (c *Client) doRequest(req *http.Request, authToken *string) ([]byte, error) {
-	token := c.Token
+	token := fmt.Sprintf("Bearer %s", c.Token)
 
 	if authToken != nil {
 		token = *authToken

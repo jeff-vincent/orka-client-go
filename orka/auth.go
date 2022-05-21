@@ -13,6 +13,7 @@ func (c *Client) SignIn() (*AuthResponse, error) {
 		return nil, fmt.Errorf("define email and password")
 	}
 	rb, err := json.Marshal(c.Auth)
+	fmt.Println(string(rb))
 	if err != nil {
 		return nil, err
 	}
@@ -21,9 +22,11 @@ func (c *Client) SignIn() (*AuthResponse, error) {
 	if err != nil {
 		return nil, err
 	}
+	req.Header.Add("Content-Type", "application/json")
 
 	body, err := c.doRequest(req, nil)
 	if err != nil {
+		fmt.Println(err)
 		return nil, err
 	}
 
