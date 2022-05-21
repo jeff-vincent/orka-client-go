@@ -9,8 +9,8 @@ import (
 
 func (c *Client) GetVMs() {
 
-	req, err := http.NewRequest("GET", fmt.Sprintf("%s/resources/vm/list", c.HostURL), nil)
-
+	req, err := http.NewRequest("GET", fmt.Sprintf("%s/resources/vm/list/all", c.HostURL), nil)
+	req.Header.Add("orka-licensekey", c.Auth.LicenseKey)
 	if err != nil {
 		fmt.Println(err)
 		return

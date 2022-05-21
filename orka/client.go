@@ -20,8 +20,9 @@ type Client struct {
 
 // AuthStruct -
 type AuthStruct struct {
-	Email    string `json:"email"`
-	Password string `json:"password"`
+	Email      string `json:"email"`
+	Password   string `json:"password"`
+	LicenseKey string `json:"license-key"`
 }
 
 // AuthResponse -
@@ -34,7 +35,7 @@ type AuthResponse struct {
 }
 
 // NewClient -
-func NewClient(host, email, password *string) (*Client, error) {
+func NewClient(host, email, password, license_key *string) (*Client, error) {
 	c := Client{
 		HTTPClient: &http.Client{Timeout: 10 * time.Second},
 		// Default Orka URL
@@ -51,8 +52,9 @@ func NewClient(host, email, password *string) (*Client, error) {
 	}
 
 	c.Auth = AuthStruct{
-		Email:    *email,
-		Password: *password,
+		Email:      *email,
+		Password:   *password,
+		LicenseKey: *license_key,
 	}
 
 	ar, err := c.SignIn()
