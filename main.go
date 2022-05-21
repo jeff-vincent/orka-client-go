@@ -19,9 +19,26 @@ func main() {
 		return
 	}
 	fmt.Println("-------- CREATING VM ---------")
-	client.CreateVM()
+	c, err := client.CreateVM()
+
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(c)
+
 	fmt.Println("-------- DEPLOYING VM ---------")
-	client.DeployVM()
+	d, err := client.DeployVM()
+
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(d)
+
 	fmt.Println("-------- GETTING VMs ---------")
-	client.GetVMs()
+	vms, err := client.GetVMs()
+
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(vms)
 }

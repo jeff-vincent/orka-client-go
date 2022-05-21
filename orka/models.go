@@ -2,7 +2,7 @@ package orka
 
 import "time"
 
-// TODO: define orka objects
+// TODO: define orka responses
 type VMs struct {
 	Message string `json:"message"`
 	Help    struct {

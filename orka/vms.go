@@ -7,29 +7,27 @@ import (
 	"strings"
 )
 
-func (c *Client) GetVMs() {
+func (c *Client) GetVMs() (VMs, error) {
 
 	req, err := http.NewRequest("GET", fmt.Sprintf("%s/resources/vm/list/all", c.HostURL), nil)
 	req.Header.Add("orka-licensekey", c.Auth.LicenseKey)
 	if err != nil {
 		fmt.Println(err)
-		return
 	}
 
 	body, err := c.doRequest(req, nil)
 
 	if err != nil {
-		fmt.Println(err)
-		return
+		return VMs{}, err
 	}
 
 	vms := VMs{}
-	errs := json.Unmarshal(body, &vms)
-	if errs != nil {
-		fmt.Println(errs)
+	err = json.Unmarshal(body, &vms)
+	if err != nil {
+		return VMs{}, err
 	}
 	fmt.Println(vms)
-	return
+	return vms, nil
 }
 
 // sample data
@@ -40,26 +38,23 @@ var vm_data = strings.NewReader(`{
 	"vcpu_count": 6
 }`)
 
-func (c *Client) CreateVM() {
+func (c *Client) CreateVM() (VMCreated, error) {
 	req, err := http.NewRequest("POST", fmt.Sprintf("%s/resources/vm/create", c.HostURL), vm_data)
 
 	if err != nil {
-		fmt.Println(err)
-		return
+		return VMCreated{}, err
 	}
 
 	body, err := c.doRequest(req, nil)
 	if err != nil {
-		fmt.Println(err)
-		return
+		return VMCreated{}, err
 	}
 	vm_created := VMCreated{}
-	errs := json.Unmarshal(body, &vm_created)
-	if errs != nil {
-		fmt.Println(errs)
+	err = json.Unmarshal(body, &vm_created)
+	if err != nil {
+		return VMCreated{}, err
 	}
-	fmt.Println(vm_created)
-	return
+	return vm_created, nil
 }
 
 // sample data
@@ -68,26 +63,24 @@ var deploy_data = strings.NewReader(`{
 	"orka_node_name":"macpro-4"
 }`)
 
-func (c *Client) DeployVM() {
+func (c *Client) DeployVM() (VMDeployed, error) {
 	req, err := http.NewRequest("POST", fmt.Sprintf("%s/resources/vm/deploy", c.HostURL), deploy_data)
 
 	if err != nil {
 		fmt.Println(err)
-		return
+		return VMDeployed{}, err
 	}
 
 	body, err := c.doRequest(req, nil)
 	if err != nil {
-		fmt.Println(err)
-		return
+		return VMDeployed{}, err
 	}
 	vm_deployed := VMDeployed{}
-	errs := json.Unmarshal(body, &vm_deployed)
+	err = json.Unmarshal(body, &vm_deployed)
 
-	if errs != nil {
-		fmt.Println(errs)
+	if err != nil {
+		return VMDeployed{}, err
 	}
 
-	fmt.Println(vm_deployed)
-	return
+	return vm_deployed, nil
 }
