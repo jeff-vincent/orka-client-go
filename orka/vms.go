@@ -26,7 +26,7 @@ func (c *Client) GetVMs() (VMs, error) {
 	if err != nil {
 		return VMs{}, err
 	}
-	fmt.Println(vms)
+	// fmt.Println(vms)
 	return vms, nil
 }
 
