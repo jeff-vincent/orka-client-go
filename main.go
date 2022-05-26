@@ -41,4 +41,21 @@ func main() {
 		fmt.Println(err)
 	}
 	fmt.Println(vms)
+
+	fmt.Println("-------- GETTING VM Status ---------")
+	vm_s, err := client.GetVMStatus("myorkavm")
+
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(vm_s)
+
+	fmt.Println("-------- GETTING VM Configs ---------")
+	vm_cfgs, err := client.GetVMConfigs()
+
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(vm_cfgs)
+
 }

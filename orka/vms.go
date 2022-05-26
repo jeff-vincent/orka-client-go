@@ -30,6 +30,52 @@ func (c *Client) GetVMs() (VMs, error) {
 	return vms, nil
 }
 
+func (c *Client) GetVMStatus(vm_name string) (VMs, error) {
+
+	req, err := http.NewRequest("GET", fmt.Sprintf("%s/resources/vm/status/%v", c.HostURL, vm_name), nil)
+	req.Header.Add("orka-licensekey", c.Auth.LicenseKey)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	body, err := c.doRequest(req, nil)
+
+	if err != nil {
+		return VMs{}, err
+	}
+
+	vms := VMs{}
+	err = json.Unmarshal(body, &vms)
+	if err != nil {
+		return VMs{}, err
+	}
+	// fmt.Println(vms)
+	return vms, nil
+}
+
+func (c *Client) GetVMConfigs() (VMConfigs, error) {
+
+	req, err := http.NewRequest("GET", fmt.Sprintf("%s/resources/vm/configs", c.HostURL), nil)
+	req.Header.Add("orka-licensekey", c.Auth.LicenseKey)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	body, err := c.doRequest(req, nil)
+
+	if err != nil {
+		return VMConfigs{}, err
+	}
+
+	vm_configs := VMConfigs{}
+	err = json.Unmarshal(body, &vm_configs)
+	if err != nil {
+		return VMConfigs{}, err
+	}
+	// fmt.Println(vms)
+	return vm_configs, nil
+}
+
 // sample data
 var vm_data = strings.NewReader(`{
 	"orka_vm_name": "myorkavm",

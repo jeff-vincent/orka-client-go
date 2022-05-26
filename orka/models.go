@@ -104,3 +104,28 @@ type ReservedPort struct {
 	GuestPort int    `json:"guest_port"`
 	Protocol  string `json:"protocol"`
 }
+
+type VMConfig struct {
+	Owner          string `json:"owner"`
+	OrkaVMName     string `json:"orka_vm_name"`
+	OrkaBaseImage  string `json:"orka_base_image"`
+	OrkaCPUCore    int    `json:"orka_cpu_core"`
+	VcpuCount      int    `json:"vcpu_count"`
+	IsoImage       string `json:"iso_image"`
+	AttachedDisk   string `json:"attached_disk"`
+	VncConsole     bool   `json:"vnc_console"`
+	IoBoost        bool   `json:"io_boost"`
+	UseSavedState  bool   `json:"use_saved_state"`
+	GpuPassthrough bool   `json:"gpu_passthrough"`
+	SystemSerial   string `json:"system_serial"`
+	Tag            string `json:"tag"`
+	TagRequired    bool   `json:"tag_required"`
+	Scheduler      string `json:"scheduler"`
+}
+
+type VMConfigs struct {
+	Message string        `json:"message,omitempty"`
+	Help    Help          `json:"help,omitempty"`
+	Errors  []interface{} `json:"errors"`
+	Configs []VMConfig    `json:"configs"`
+}

@@ -1,3 +1,3 @@
-module github.com/jeff-vincent/orka-client-go
+module orka-client-go
 
 go 1.18
