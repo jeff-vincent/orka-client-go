@@ -26,6 +26,7 @@ func (c *Client) GetVMs() (VMs, error) {
 	if err != nil {
 		return VMs{}, err
 	}
+  
 	// fmt.Println(vms)
 	return vms, nil
 }
@@ -75,6 +76,7 @@ func (c *Client) GetVMConfigs() (VMConfigs, error) {
 	// fmt.Println(vms)
 	return vm_configs, nil
 }
+
 
 // sample data
 var vm_data = strings.NewReader(`{
