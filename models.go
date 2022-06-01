@@ -35,14 +35,14 @@ type VMDeployed struct {
 }
 
 type Help struct {
-	StartVirtualMachine            string                         `json:"start_virtual_machine,omitempty"`
-	StopVirtualMachine             string                         `json:"stop_virtual_machine,omitempty"`
-	ResumeVirtualMachine           string                         `json:"resume_virtual_machine,omitempty"`
-	SuspendVirtualMachine          string                         `json:"suspend_virtual_machine,omitempty"`
-	DeployVirtualMachine           string                         `json:"deploy_virtual_machine,omitempty"`
-	VirtualMachineVnc              string                         `json:"virtual_machine_vnc,omitempty"`
-	RequiredRequestDataForDeploy   RequiredRequestDataForDeploy   `json:"required_request_data_for_deploy,omitempty"`
-	DataForVirtualMachineExecTasks DataForVirtualMachineExecTasks `json:"data_for_virtual_machine_exec_tasks,omitempty"`
+	StartVirtualMachine            string                         `json:"start_virtual_machine"`
+	StopVirtualMachine             string                         `json:"stop_virtual_machine"`
+	ResumeVirtualMachine           string                         `json:"resume_virtual_machine"`
+	SuspendVirtualMachine          string                         `json:"suspend_virtual_machine"`
+	DeployVirtualMachine           string                         `json:"deploy_virtual_machine"`
+	VirtualMachineVnc              string                         `json:"virtual_machine_vnc"`
+	RequiredRequestDataForDeploy   RequiredRequestDataForDeploy   `json:"required_request_data_for_deploy"`
+	DataForVirtualMachineExecTasks DataForVirtualMachineExecTasks `json:"data_for_virtual_machine_exec_tasks"`
 }
 
 type RequiredRequestDataForDeploy struct {
@@ -58,18 +58,18 @@ type VirtualMachineResource struct {
 	Message               string     `json:"message"`
 	VirtualMachineName    string     `json:"virtual_machine_name"`
 	VMDeploymentStatus    string     `json:"vm_deployment_status"`
-	Status                []VMStatus `json:"status,omitempty"`
-	Owner                 string     `json:"owner,omitempty"`
-	CPU                   int        `json:"cpu,omitempty"`
-	Vcpu                  int        `json:"vcpu,omitempty"`
-	BaseImage             string     `json:"base_image,omitempty"`
-	Image                 string     `json:"image,omitempty"`
-	IoBoost               bool       `json:"io_boost,omitempty"`
-	UseSavedState         bool       `json:"use_saved_state,omitempty"`
-	GpuPassthrough        bool       `json:"gpu_passthrough,omitempty"`
-	ConfigurationTemplate string     `json:"configuration_template,omitempty"`
-	Tag                   string     `json:"tag,omitempty"`
-	TagRequired           bool       `json:"tag_required,omitempty"`
+	Status                []VMStatus `json:"status"`
+	Owner                 string     `json:"owner"`
+	CPU                   int        `json:"cpu"`
+	Vcpu                  int        `json:"vcpu"`
+	BaseImage             string     `json:"base_image"`
+	Image                 string     `json:"image"`
+	IoBoost               bool       `json:"io_boost"`
+	UseSavedState         bool       `json:"use_saved_state"`
+	GpuPassthrough        bool       `json:"gpu_passthrough"`
+	ConfigurationTemplate string     `json:"configuration_template"`
+	Tag                   string     `json:"tag"`
+	TagRequired           bool       `json:"tag_required"`
 }
 
 type VMStatus struct {
@@ -124,8 +124,8 @@ type VMConfig struct {
 }
 
 type VMConfigs struct {
-	Message string        `json:"message,omitempty"`
-	Help    Help          `json:"help,omitempty"`
+	Message string        `json:"message"`
+	Help    Help          `json:"help"`
 	Errors  []interface{} `json:"errors"`
 	Configs []VMConfig    `json:"configs"`
 }
