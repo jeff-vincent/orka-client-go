@@ -26,7 +26,7 @@ func (c *Client) GetVMs() (VMs, error) {
 	if err != nil {
 		return VMs{}, err
 	}
-  
+
 	// fmt.Println(vms)
 	return vms, nil
 }
@@ -77,16 +77,15 @@ func (c *Client) GetVMConfigs() (VMConfigs, error) {
 	return vm_configs, nil
 }
 
-
 // sample data
-var vm_data = strings.NewReader(`{
-	"orka_vm_name": "myorkavm",
-	"orka_base_image": "bigsur-ssh-git.img",
-	"orka_cpu_core": 6,
-	"vcpu_count": 6
-}`)
+// var vm_data = strings.NewReader(`{
+// 	"orka_vm_name": "myorkavm",
+// 	"orka_base_image": "bigsur-ssh-git.img",
+// 	"orka_cpu_core": 6,
+// 	"vcpu_count": 6
+// }`)
 
-func (c *Client) CreateVM() (VMCreated, error) {
+func (c *Client) CreateVM(vm_data *strings.Reader) (VMCreated, error) {
 	req, err := http.NewRequest("POST", fmt.Sprintf("%s/resources/vm/create", c.HostURL), vm_data)
 
 	if err != nil {
